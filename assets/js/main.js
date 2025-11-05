@@ -87,16 +87,17 @@ numberInput.addEventListener("keydown", (e) => {
 
 const flattenArray = (arr) => {
   let result = [];
+
   for (let i = 0; i < arr.length; i++) {
     if (Array.isArray(arr[i])) {
-      let flat = flattenArray(arr[i]);
-      for (let j = 0; j < flat.length; j++) {
-        result.push(flat[j]);
-      }
+      // Recursively flatten nested arrays
+      result = result.concat(flattenArray(arr[i]));
     } else {
-      result.push(arr[i]);
+      // Concat non-array value as an array
+      result = result.concat(arr[i]);
     }
   }
+
   return result;
 };
 

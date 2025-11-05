@@ -23,7 +23,7 @@ const animationData = [
     msg: "decimalToBinary(1) returns '1' (base case) and gives that value to the stack below. Then it pops off the stack.",
     showMsgDelay: 5000,
     removeElDelay: 10000,
-  }
+  },
 ];
 
 const decimalToBinary = (input) => {
@@ -56,7 +56,7 @@ const showAnimation = () => {
   });
 
   setTimeout(() => {
-result.textContent = decimalToBinary(5);
+    result.textContent = decimalToBinary(5);
   }, 20000);
 };
 
@@ -84,3 +84,20 @@ numberInput.addEventListener("keydown", (e) => {
     checkUserInput();
   }
 });
+
+const flattenArray = (arr) => {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      let flat = flattenArray(arr[i]);
+      for (let j = 0; j < flat.length; j++) {
+        result.push(flat[j]);
+      }
+    } else {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+
+console.log(flattenArray([1, [2, [3, 4]], 5]));

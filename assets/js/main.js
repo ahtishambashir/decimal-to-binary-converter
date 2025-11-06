@@ -139,3 +139,25 @@ const reverseArray = (arr) => {
 };
 
 console.log(reverseArray([1, 2, 3, 4, 5]));
+
+const removeDuplicates = (arr) => {
+  let unique = [];
+  for (let i = 0; i < arr.length; i++) {
+    let exist = false;
+    for (let j = 0; j < unique.length; j++) {
+      if (arr[i] === unique[j]) {
+        exist = true;
+        break;
+      }
+    }
+    if (!exist) {
+      unique.push(arr[i]);
+    }
+  }
+  return unique;
+};
+
+console.log(
+  "This is removed duplicates:",
+  removeDuplicates([1, 2, 3, 2, 4, 1, 5])
+);

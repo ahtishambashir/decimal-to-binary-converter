@@ -87,18 +87,45 @@ numberInput.addEventListener("keydown", (e) => {
 
 const flattenArray = (arr) => {
   let result = [];
-
   for (let i = 0; i < arr.length; i++) {
     if (Array.isArray(arr[i])) {
-      // Recursively flatten nested arrays
       result = result.concat(flattenArray(arr[i]));
     } else {
-      // Concat non-array value as an array
       result = result.concat(arr[i]);
     }
   }
-
   return result;
 };
 
 console.log(flattenArray([1, [2, [3, 4]], 5]));
+
+const flatArray2 = (arr) => {
+  let results = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      results = results.concat(flatArray2(arr[i]));
+    } else {
+      results = results.concat(arr[i]);
+    }
+  }
+  return results;
+};
+
+console.log(flatArray2([1, [2, [3, 4]], 5]));
+
+const flatArrayWithPush = (arr) => {
+  let flatArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      const flatArr2 = flatArrayWithPush(arr[i]);
+      for (let j = 0; j < arr.length; j++) {
+        flatArr.push(flatArr2[j]);
+      }
+    } else {
+      flatArr.push(arr[i]);
+    }
+  }
+  return flatArr;
+};
+
+console.log(flatArrayWithPush([1, [2, [3, 4]], 5]));
